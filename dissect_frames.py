@@ -1,3 +1,5 @@
+import h5py
+import numpy as np
 import MDAnalysis as mda
 import os, random
 
@@ -9,6 +11,7 @@ print (md_obj.keys())
 for i, (key, items) in enumerate(md_obj.items()):
     print (key)
     print (items)
+    print (type(items), type(key))
 
     if i == 5:
         break
