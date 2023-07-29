@@ -14,7 +14,7 @@ for i, (key, items) in enumerate(md_obj.items()):
 
     n_atoms = len(items['atoms_element'])
     coordinates = items['trajectory_coordinates']
-    frames.append(coordinates)
+    frames.append(coordinates.value)
 
     if i == 3:
         break
