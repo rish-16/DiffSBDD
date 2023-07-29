@@ -1,6 +1,7 @@
 import h5py
 import numpy as np
 import MDAnalysis as mda
+from MDAnalysis.analysis import rms
 import os, random
 
 MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
@@ -19,9 +20,26 @@ for i, (key, items) in enumerate(md_obj.items()):
     if i == 3:
         break
 
-print (frames[0])
-print (type(frames[0]))
-print (frames[0].shape)
+# print (frames[0])
+# print (type(frames[0]))
+# print (frames[0].shape)
+
+protein = proteins[0]
+sample_coords = frames[0]
+seen = ()
+scores = []
+
+for fi in range(sample_coords.shape[0]):
+    for fj in range(sample_coords.shape[0]):
+        temp = []
+        if fi != fj:
+            r = rms.rmsd(sample_coords[fi], sample_coords[fj], center=True, superposition=True)
+            temp.append(r)
+        else:
+            temp.append(0)
+        scores.append(temp)
+
+np.save("scores.npy", np.array(scores))
 
 """
 10GS <HDF5 group "/10GS" (10 members)>
