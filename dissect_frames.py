@@ -14,11 +14,12 @@ for i, (key, items) in enumerate(md_obj.items()):
 
     n_atoms = len(items['atoms_element'])
     coordinates = items['trajectory_coordinates']
-    frames.append(coordinates.value)
+    frames.append(np.array(coordinates))
 
     if i == 3:
         break
 
+print (frames[0])
 print (type(frames[0]))
 print (frames[0].shape)
 
