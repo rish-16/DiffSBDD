@@ -9,6 +9,7 @@
 
 import MDAnalysis as mda
 from MDAnalysis.analysis import diffusionmap, align, rms
+from MDAnalysis.coordinates.PDB import PDBWriter
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -20,24 +21,34 @@ def pairwise_rmsd(universe, K):
     aligner = align.AlignTraj(universe, universe, select='name CA', in_memory=True).run()
     matrix = diffusionmap.DistanceMatrix(universe, select='name CA').run()
 
-    plt.imshow(matrix.dist_matrix, cmap='viridis')
-    plt.xlabel('Frame')
-    plt.ylabel('Frame')
-    plt.colorbar(label=r'RMSD ($\AA$)')
-    plt.show()
+    # plt.imshow(matrix.dist_matrix, cmap='viridis')
+    # plt.xlabel('Frame')
+    # plt.ylabel('Frame')
+    # plt.colorbar(label=r'RMSD ($\AA$)')
+    # plt.show()
 
     rmsd_sum = matrix.dist_matrix.sum(axis=0)
 
     ind = np.argpartition(rmsd_sum, -K)[-K:]
     return ind.tolist()
 
-universe = mda.Universe(pdb_path, format="PDB")
+universe = mda.Universe(pdb_path, format="PDB", guess_bonds=True, guess_topology=True)
 topk_index = pairwise_rmsd(universe, K=10)
+
+guessed_bonds = mda.topology.guessers.guess_bonds(universe.atoms, universe.atoms.positions)
+print (guessed_bonds)
+universe.add_TopologyAttr('bonds', guessed_bonds)
 
 n_atoms = universe.atoms
 
 for fi in topk_index:
     frame = universe.trajectory[fi]
     print (frame.time, fi)
-    with mda.Writer(f"1A4G_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms) as W:
-        W.write(universe.atoms)
+    with PDBWriter(f"misato/1A4G_frames/1A4G_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms, bonds='conect',) as W:
+        W.write(universe)
+        
+        # try:
+        #     print (universe.__dict__.keys())
+        #     W.write(universe.bonds)
+        # except Exception as e:
+        #     print (e)
