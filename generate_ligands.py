@@ -32,6 +32,7 @@ if __name__ == "__main__":
     model = LigandPocketDDPM.load_from_checkpoint(
         args.checkpoint, map_location=device)
     model = model.to(device)
+    print ("Loaded DiffSBDD conditional model ...")
 
     if args.num_nodes_lig is not None:
         num_nodes_lig = torch.ones(args.n_samples, dtype=int) * \
