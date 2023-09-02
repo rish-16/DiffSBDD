@@ -1,45 +1,60 @@
 import h5py
 import numpy as np
 import MDAnalysis as mda
+import matplotlib.pyplot as plt
+import urllib.request
 from MDAnalysis.analysis import rms
 import os, random
 
-MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
-md_obj = h5py.File(MD_HD5_PATH)
+# MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
+# md_obj = h5py.File(MD_HD5_PATH)
 
-proteins = []
-frames = []
+# proteins = []
+# frames = []
 
-for i, (key, items) in enumerate(md_obj.items()):
-    proteins.append(key)
+# for i, (key, items) in enumerate(md_obj.items()):
+#     proteins.append(key)
 
-    n_atoms = len(items['atoms_element'])
-    coordinates = items['trajectory_coordinates']
-    frames.append(np.array(coordinates))
+#     n_atoms = len(items['atoms_element'])
+#     coordinates = items['trajectory_coordinates']
+#     frames.append(np.array(coordinates))
 
-    if i == 3:
-        break
+#     if i == 3:
+#         break
 
-# print (frames[0])
-# print (type(frames[0]))
-# print (frames[0].shape)
+# # print (frames[0])
+# # print (type(frames[0]))
+# # print (frames[0].shape)
 
-protein = proteins[0]
-sample_coords = frames[0]
-seen = ()
-scores = []
+# protein = proteins[0]
+# sample_coords = frames[0]
+# seen = ()
+# scores = []
 
-for fi in range(sample_coords.shape[0]):
-    for fj in range(sample_coords.shape[0]):
-        temp = []
-        if fi != fj:
-            r = rms.rmsd(sample_coords[fi], sample_coords[fj], center=True, superposition=True)
-            temp.append(r)
-        else:
-            temp.append(0)
-        scores.append(temp)
+# for fi in range(sample_coords.shape[0]):
+#     for fj in range(sample_coords.shape[0]):
+#         temp = []
+#         if fi != fj:
+#             r = rms.rmsd(sample_coords[fi], sample_coords[fj], center=True, superposition=True)
+#             temp.append(r)
+#         else:
+#             temp.append(0)
+#         scores.append(temp)
 
-np.save("scores.npy", np.array(scores))
+urllib.request.urlretrieve('http://files.rcsb.org/download/101M.pdb', '101m.pdb')
+
+# scores = np.load("scores.npy").reshape(100, 100)
+# # plt.imshow(scores)
+
+# ax = plt.gca()
+# im = ax.imshow(scores)
+# cbar = ax.figure.colorbar(im, ax=ax)
+# cbar.ax.set_ylabel("Frame RMSD", rotation=-90, va="bottom")
+
+# plt.xlabel("Frame $F_t$")
+# plt.ylabel("Frame $F_t$")
+# plt.grid()
+# plt.show()
 
 """
 10GS <HDF5 group "/10GS" (10 members)>
