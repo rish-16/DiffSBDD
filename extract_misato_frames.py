@@ -34,10 +34,10 @@ def pairwise_rmsd(universe, K):
 universe = mda.Universe(pdb_path, format="PDB")
 topk_index = pairwise_rmsd(universe, K=10)
 
-# n_atoms = universe.atoms
+n_atoms = universe.atoms
 
-# for fi in topk_index:
-#     frame = universe.trajectory[fi]
-#     print (frame.time, fi)
-#     with mda.Writer(f"1A4G_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms) as W:
-#         W.write(universe.atoms)
+for fi in topk_index:
+    frame = universe.trajectory[fi]
+    print (frame.time, fi)
+    with mda.Writer(f"1A4G_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms) as W:
+        W.write(universe.atoms)

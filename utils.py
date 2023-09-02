@@ -102,7 +102,8 @@ def get_residue_with_resi(pdb_chain, resi):
 
 def get_pocket_from_ligand(pdb_model, ligand_id, dist_cutoff=8.0):
     chain, resi = ligand_id.split(':')
-    ligand = get_residue_with_resi(pdb_model[chain], int(resi))
+    print (chain, resi)
+    ligand = get_residue_with_resi(pdb_model[chain], resi)
     ligand_coords = torch.from_numpy(
         np.array([a.get_coord() for a in ligand.get_atoms()]))
 
