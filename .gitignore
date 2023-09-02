@@ -1,6 +1,10 @@
 misato/1A4G_final_animation.pdb
-# misato/1A4G_frames
-misato/*.zip
-**/__pycache__/
-ckpt/*.ckpt
 misato/1CNX_final_animation.pdb
+misato/*.zip
+
+# misato/1A4G_frames
+# misato/1CNX_frames
+
+**/__pycache__/
+
+ckpt/*.ckpt

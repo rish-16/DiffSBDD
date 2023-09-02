@@ -13,7 +13,7 @@ from MDAnalysis.coordinates.PDB import PDBWriter
 import matplotlib.pyplot as plt
 import numpy as np
 
-pdb_path = "misato/1A4G_final_animation.pdb"
+pdb_path = "misato/1CNX_final_animation.pdb"
 
 def pairwise_rmsd(universe, K):
     trajectory = universe.trajectory
@@ -44,7 +44,7 @@ n_atoms = universe.atoms
 for fi in topk_index:
     frame = universe.trajectory[fi]
     print (frame.time, fi)
-    with PDBWriter(f"misato/1A4G_frames/1A4G_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms, bonds='conect',) as W:
+    with PDBWriter(f"misato/1CNX_frames/1CNX_complex_frame_{str(fi)}.pdb", n_atoms=n_atoms, bonds='conect',) as W:
         W.write(universe)
         
         # try:
