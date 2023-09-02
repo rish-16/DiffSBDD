@@ -95,6 +95,7 @@ def residues_to_atoms(x_ca, atom_encoder):
 
 
 def get_residue_with_resi(pdb_chain, resi):
+    print (pdb_chain)
     res = [x for x in pdb_chain.get_residues() if x.id[1] == resi]
     assert len(res) == 1
     return res[0]
