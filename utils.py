@@ -99,9 +99,9 @@ def get_residue_with_resi(pdb_chain, resi):
     res = []
     # print (len(pdb_chain.get_residues()))
     for x in pdb_chain.get_residues():
-        print (x.id)
-        print (x.__dict__.keys())
-        if x.id == resi:
+        # print (x.resname)
+        # print (x.__dict__.keys())
+        if x.resname == resi:
             res.append(x)
     # res = [x for x in pdb_chain.get_residues() if x.id[1] == resi]
     assert len(res) == 1, len(res)
