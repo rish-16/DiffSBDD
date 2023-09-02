@@ -95,22 +95,22 @@ def residues_to_atoms(x_ca, atom_encoder):
 
 
 def get_residue_with_resi(pdb_chain, resi):
-    print (pdb_chain)
-    res = []
-    # print (len(pdb_chain.get_residues()))
-    for x in pdb_chain.get_residues():
-        # print (x.resname)
-        # print (x.__dict__.keys())
-        if x.resname == resi:
-            res.append(x)
-    # res = [x for x in pdb_chain.get_residues() if x.id[1] == resi]
+    # print (pdb_chain)
+    # res = []
+    # # print (len(pdb_chain.get_residues()))
+    # for x in pdb_chain.get_residues():
+    #     # print (x.resname)
+    #     # print (x.__dict__.keys())
+    #     if x.resname == resi:
+    #         res.append(x)
+    res = [x for x in pdb_chain.get_residues() if x.id[1] == resi]
     assert len(res) == 1, len(res)
     return res[0]
 
 
 def get_pocket_from_ligand(pdb_model, ligand_id, dist_cutoff=8.0):
     chain, resi = ligand_id.split(':')
-    print (chain, resi)
+    # print (chain, resi)
     ligand = get_residue_with_resi(pdb_model[chain], resi)
     ligand_coords = torch.from_numpy(
         np.array([a.get_coord() for a in ligand.get_atoms()]))
