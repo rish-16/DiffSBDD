@@ -26,9 +26,9 @@ for pdb in md_folder:
     universe = mda.Universe(pdb_path, format="PDB", guess_bonds=True, guess_topology=True)
     all_frames_cumulative_rmsd = pairwise_rmsd(universe, K=10)
     n_atoms = universe.atoms
-
-    mean_array.append(all_frames_cumulative_rmsd.mean())
-    median_array.append(np.median(all_frames_cumulative_rmsd))
+    n_frames = len(universe.trajectory)
+    mean_array.append(all_frames_cumulative_rmsd.mean() / n_frames)
+    median_array.append(np.median(all_frames_cumulative_rmsd) / n_frames)
 
 fig = plt.figure()
 plt.hist(mean_array, bins=20, color="orange")
