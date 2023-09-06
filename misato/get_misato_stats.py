@@ -8,7 +8,7 @@ import numpy as np
 # MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
 # md_obj = h5py.File(MD_HD5_PATH)
 
-PATH = "misato/all_misato_anim/"
+PATH = "all_misato_anim/"
 md_folder = os.listdir(PATH)
 
 def pairwise_rmsd(universe, K):
