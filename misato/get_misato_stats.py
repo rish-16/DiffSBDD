@@ -16,7 +16,8 @@ def pairwise_rmsd(universe, K):
     universe.trajectory[0]
     aligner = align.AlignTraj(universe, universe, select='name CA', in_memory=True).run()
     matrix = diffusionmap.DistanceMatrix(universe, select='name CA').run()
-    rmsd_sum = matrix.dist_matrix.sum(axis=0)
+    n_frames = len(trajectory)
+    rmsd_sum = matrix.dist_matrix.sum(axis=0) / n_frames
     return rmsd_sum
 
 mean_array = []
@@ -26,9 +27,9 @@ for pdb in md_folder:
     universe = mda.Universe(pdb_path, format="PDB", guess_bonds=True, guess_topology=True)
     all_frames_cumulative_rmsd = pairwise_rmsd(universe, K=10)
     n_atoms = universe.atoms
-    n_frames = len(universe.trajectory)
-    mean_array.append(all_frames_cumulative_rmsd.mean() / n_frames)
-    median_array.append(np.median(all_frames_cumulative_rmsd) / n_frames)
+
+    mean_array.append(all_frames_cumulative_rmsd.mean())
+    median_array.append(np.median(all_frames_cumulative_rmsd))
 
 fig = plt.figure()
 plt.hist(mean_array, bins=20, color="orange")
