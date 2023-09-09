@@ -11,4 +11,4 @@ md_H5File = h5py.File(mdh5_file)
 pdb_codes = list(dict(md_H5File).keys())
 print ("number of PDBs:", len(pdb_codes))
 
-print (md_H5File_tiny['1A4G'].keys())
+print (md_H5File['1A4G'].keys())
