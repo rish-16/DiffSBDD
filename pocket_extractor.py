@@ -12,10 +12,10 @@ pdb_codes = list(dict(md_H5File).keys())
 print ("number of PDBs:", len(pdb_codes))
 
 pprint (md_H5File['1A4G'].keys())
-# print (md_H5File.get('1A4G/atoms_coordinates_ref')[:])
-# print (md_H5File.get('1A4G/atoms_element')[:20])
-# print (md_H5File.get('1A4G/atoms_residue')[:20])
-# print (md_H5File.get('1A4G/atoms_number')[:20])
+print (md_H5File.get('1A4G/frames_distance')[:20])
+print (md_H5File.get('1A4G/frames_distance').shape)
+print (md_H5File.get('1A4G/frames_rmsd_ligand')[:20])
+print (md_H5File.get('1A4G/frames_rmsd_ligand').shape)
 
 
 pprint (md_H5File['1CNX'].keys())
