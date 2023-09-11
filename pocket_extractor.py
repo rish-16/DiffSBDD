@@ -5,7 +5,7 @@ import MDAnalysis as mda
 import h5py
 import os, subprocess
 
-mdh5_file = '/data/rishabh/MD/h5_files/MD.hdf'
+mdh5_file = '/data/rishabh/MD/h5_files/MD.hdf5'
 md_H5File = h5py.File(mdh5_file)
 
 pdb_codes = list(dict(md_H5File).keys())
