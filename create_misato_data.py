@@ -33,6 +33,7 @@ print (set(md_H5File['1A4G/atoms_type'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_element'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_number'][:].tolist()))
 print ((md_H5File['1A4G/molecules_begin_atom_index'][:]))
+print ((md_H5File['1A4G/trajectory_coordinates'][:].shape))
 
 print ("---------------------------------------")
 
