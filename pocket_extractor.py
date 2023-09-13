@@ -17,8 +17,9 @@ print (md_H5File.get('1A4G/frames_distance').shape)
 print (md_H5File.get('1A4G/frames_rmsd_ligand')[:20])
 print (md_H5File.get('1A4G/frames_rmsd_ligand').shape)
 
+trajectory_coordinates = md_H5File.get('1A4G/trajectory_coordinates')[:]
 
-pprint (md_H5File['1CNX'].keys())
+# pprint (md_H5File['1CNX'].keys())
 # print (md_H5File.get('1CNX/atoms_coordinates_ref')[:])
 # print (md_H5File.get('1CNX/atoms_element')[:20])
 # print (md_H5File.get('1CNX/atoms_residue')[:20])
