@@ -19,7 +19,6 @@ with open(PATH, "r") as f:
 for pdb in pdb_ids:
     record = h5_file[pdb]
     for i in range(100):
-        cmd = f"python misato/h5_to_pdb.py -s {pdb.upper()} -dMD {H5_PATH} -f {i} -o analysis_combined_pdbs/combined_{pdb.upper()}/"
+        cmd = f"python h5_to_pdb.py -s {pdb.upper()} -dMD {H5_PATH} -f {i} -o analysis_combined_pdbs/combined_{pdb.upper()}/"
         subprocess.call(cmd, shell=True)
 
-    
