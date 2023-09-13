@@ -32,6 +32,7 @@ pprint (md_H5File['1A4G'].keys())
 print (set(md_H5File['1A4G/atoms_type'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_element'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_number'][:].tolist()))
+print ((md_H5File['1A4G/molecules_begin_atom_index'][:]))
 
 print ("---------------------------------------")
 
@@ -40,4 +41,4 @@ pprint (md_H5File['1CNX'].keys())
 print (set(md_H5File['1CNX/atoms_type'][:].tolist()))
 print (set(md_H5File['1CNX/atoms_element'][:].tolist()))
 print (set(md_H5File['1CNX/atoms_number'][:].tolist()))
-print ((md_H5File['1CNX/molecules_begin_atom_index'][:].tolist()))
+print ((md_H5File['1CNX/molecules_begin_atom_index'][:]))
