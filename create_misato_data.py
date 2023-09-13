@@ -28,4 +28,4 @@ pdb_codes = list(dict(md_H5File).keys())
 print ("number of PDBs:", len(pdb_codes))
 
 pprint (md_H5File['1A4G'].keys())
-print (md_H5File['1A4G/atoms_residue'][:])
+print (set(md_H5File['1A4G/atoms_residue'][:].tolist()))
