@@ -6,8 +6,8 @@ import urllib.request
 from MDAnalysis.analysis import rms
 import os, random
 
-# MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
-# md_obj = h5py.File(MD_HD5_PATH)
+MD_HD5_PATH = "/data/rishabh/MD/h5_files/MD.hdf5"
+md_obj = h5py.File(MD_HD5_PATH)
 
 # proteins = []
 # frames = []
