@@ -31,6 +31,7 @@ pprint (md_H5File['1A4G'].keys())
 # print (set(md_H5File['1A4G/atoms_residue'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_type'][:].tolist()))
 print (set(md_H5File['1A4G/atoms_element'][:].tolist()))
+print (set(md_H5File['1A4G/atoms_number'][:].tolist()))
 
 print ("---------------------------------------")
 
@@ -38,3 +39,4 @@ pprint (md_H5File['1CNX'].keys())
 # print (set(md_H5File['1CNX/atoms_residue'][:].tolist()))
 print (set(md_H5File['1CNX/atoms_type'][:].tolist()))
 print (set(md_H5File['1CNX/atoms_element'][:].tolist()))
+print (set(md_H5File['1CNX/atoms_number'][:].tolist()))
