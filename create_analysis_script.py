@@ -33,6 +33,5 @@ for pdb_dir in all_pdb_dirs:
         chain = moad_pocket_info_records[pdb_name].split(":")[0]
         chain_info = f"{chain}:{first_atom.resid}"
 
-        if pdb_name == "3L9H":
-            final_path = PDB_PATH + pdb_dir + "/" + frame_path
-            print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile {final_path} --outdir analysis_output/{pdb_name}_frame{frame_id}_result/ --ref_ligand {chain_info}")
+        final_path = PDB_PATH + pdb_dir + "/" + frame_path
+        print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile {final_path} --outdir analysis_output/{pdb_name}_frame{frame_id}_result/ --ref_ligand {chain_info}")
