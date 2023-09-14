@@ -21,7 +21,7 @@ for pdb_dir in all_pdb_dirs:
     frames_path = os.listdir(PDB_PATH + pdb_dir)
     pdb_universes = []
     for frame_path in frames_path:
-        print (PDB_PATH + pdb_dir + "/" + frame_path)
+        # print (PDB_PATH + pdb_dir + "/" + frame_path)
         frame_pdb_uni = mda.Universe(PDB_PATH + pdb_dir + "/" + frame_path, format="PDB")
         frame_id = frame_path[:-4]
         frame_id = frame_id.split("_")[-1].replace("frame", "").strip()
