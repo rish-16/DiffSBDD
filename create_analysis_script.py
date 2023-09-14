@@ -11,7 +11,7 @@ for pdb_dir in all_pdb_dirs:
     for frame_path in frames_path:
         print (PDB_PATH + pdb_dir + "/" + frame_path)
         frame_pdb = mda.Universe(PDB_PATH + pdb_dir + "/" + frame_path, format="PDB")
-        frame_id = frame_id[:-4]
-        frame_id = frame_path.split("_")[-1].replace("frame", "").strip()
+        frame_id = frame_path[:-4]
+        frame_id = frame_id.split("_")[-1].replace("frame", "").strip()
         print (pdb_dir, frame_pdb, frame_id)
         # print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile {PDB_PATH + pdb_dir + "/" + frame_path} --outdir analysis_output/{}/")
