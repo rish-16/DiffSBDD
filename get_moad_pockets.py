@@ -11,13 +11,22 @@ with open("data/moad_test.txt", "r") as f:
     moad_test = [[rec[0], rec[1].split("_")] for rec in moad_test]
     moad_test = [[rec[0], rec[1][0], rec[1][1].split(":")] for rec in moad_test]
     moad_test = [[rec[0], rec[1], rec[2][0], rec[2][1] + ":" + rec[2][2]] for rec in moad_test]
-    moad_test = {
-        rec[0] : [rec[1] + "_" + rec[2], rec[3]]
-        for rec in moad_test
-    }
 
+all_records = {}
+for rec in moad_test:
+    if rec[0] in all_records:
+        all_records[rec[0]].append(
+            [rec[1] + "_" + rec[2], rec[3]]
+        )
+    else:
+        all_records[rec[0]] = [
+            [rec[1] + "_" + rec[2], rec[3]]
+        ]
+
+counter = 0
 print (f"PDBID,LigID,ChainInfo")
 for pdb in moad_misato_pdb_list:
-    if pdb in moad_test:
-        pdb_details = moad_test[pdb]
-        print (f"{pdb},{pdb_details[0]},{pdb_details[1]}")
+    if pdb in all_records:
+        pdb_details = all_records[pdb]
+        for rec in pdb_details:
+            print (f"{pdb},{rec[0]},{rec[1]}")

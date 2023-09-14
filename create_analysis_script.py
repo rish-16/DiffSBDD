@@ -7,7 +7,7 @@ PDB_PATH = "analysis_combined_pdbs/"
 all_pdb_dirs = os.listdir(PDB_PATH)
 
 with open("PDB_IDs/misato_moad_pocket_info.txt", "r") as f:
-    moad_pocket_info_records = f.read().strip().split()
+    moad_pocket_info_records = f.read().strip().split()[1:]
     moad_pocket_info_records = [d.strip().split(",") for d in moad_pocket_info_records]
 
 moad_pocket_info_records = {
@@ -22,11 +22,17 @@ for pdb_dir in all_pdb_dirs:
     pdb_universes = []
     for frame_path in frames_path:
         print (PDB_PATH + pdb_dir + "/" + frame_path)
-        frame_pdb = mda.Universe(PDB_PATH + pdb_dir + "/" + frame_path, format="PDB")
+        frame_pdb_uni = mda.Universe(PDB_PATH + pdb_dir + "/" + frame_path, format="PDB")
         frame_id = frame_path[:-4]
         frame_id = frame_id.split("_")[-1].replace("frame", "").strip()
         pdb_name = frame_path[:4]
-        chain_info = moad_pocket_info_records[pdb_name]
+        # chain_info = moad_pocket_info_records[pdb_name]
 
-        final_path = PDB_PATH + pdb_dir + "/" + frame_path
-        print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile {final_path} --outdir analysis_output/{pdb_name}_frame{frame_id}_result/ --ref_ligand {chain_info}")
+        frame_pdb_uni_mol_atoms = frame_pdb_uni.select_atoms("resname MOL")
+        first_atom = frame_pdb_uni_mol_atoms[0]
+        chain = moad_pocket_info_records[pdb_name].split(":")[0]
+        chain_info = f"{chain}:{first_atom.resid}"
+
+        if pdb_name == "3L9H":
+            final_path = PDB_PATH + pdb_dir + "/" + frame_path
+            print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile {final_path} --outdir analysis_output/{pdb_name}_frame{frame_id}_result/ --ref_ligand {chain_info}")
