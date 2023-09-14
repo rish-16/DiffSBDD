@@ -10,3 +10,4 @@ misato/all_atoms_11GS.hdf5
 **/__pycache__/
 
 ckpt/*.ckpt
+analysis_combined_pdbs/**
