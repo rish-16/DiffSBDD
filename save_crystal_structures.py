@@ -12,7 +12,7 @@ with open(OVERLAP_PATH, "r") as f:
 converter = lambda s : re.findall(r'\d', s.split("_")[0])[0]
 
 overlap_PDBs = {
-    rec[0].upper() : True
+    rec[0].upper() : rec[2]
     for rec in overlap_records
 }
 
@@ -22,12 +22,12 @@ for pdb in os.listdir(BM2020_PATH):
         pdb_ = pdb[:-6] # ignore the _x.pdb prefix
         if pdb_.upper() in overlap_PDBs:
             if pdb_.upper() in original_structures:
-                original_structures[pdb_].append(pdb)
+                original_structures[pdb_].append([pdb, overlap_PDBs[pdb_.upper()]])
             else:
-                original_structures[pdb_] = [pdb]
+                original_structures[pdb_] = [[pdb, overlap_PDBs[pdb_.upper()]]]
     
 for key, val in original_structures.items():
-    fp = BM2020_PATH + val[0]
-    cmd = f"cp {fp} og_crystal_structs/{val[0]}"
-    subprocess.call(cmd, shell=True)
-    # print (f"{key.upper()}, {BM2020_PATH + val[0]}")
+    fp = BM2020_PATH + val[0][0]
+    # cmd = f"cp {fp} og_crystal_structs/{val[0]}"
+    # subprocess.call(cmd, shell=True)
+    print (f"{key.upper()}, {BM2020_PATH + val[0]}, {val[0][1]}")
