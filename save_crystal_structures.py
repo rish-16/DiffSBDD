@@ -16,9 +16,6 @@ overlap_PDBs = {
     for rec in overlap_records
 }
 
-pprint (overlap_PDBs)
-print (len(overlap_PDBs))
-
 original_structures = {}
 for pdb in os.listdir(BM2020_PATH):
     if "_1" in pdb or "_2" in pdb or "_3" in pdb:
@@ -30,4 +27,4 @@ for pdb in os.listdir(BM2020_PATH):
                 original_structures[pdb_] = [pdb]
     
 for key, val in original_structures.items():
-    print (key, BM2020_PATH + val[0])
+    print (f"{key}, {BM2020_PATH + val[0]}")
