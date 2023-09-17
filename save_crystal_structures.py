@@ -1,4 +1,4 @@
-import os, subprocess, csv, json
+import os, subprocess, csv, json, re
 import MDAnalysis as mda
 from pprint import pprint
 
