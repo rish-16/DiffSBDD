@@ -23,10 +23,11 @@ original_structures = {}
 for pdb in os.listdir(BM2020_PATH):
     if "_1" in pdb or "_2" in pdb or "_3" in pdb:
         pdb_ = pdb[:-6] # ignore the _x.pdb prefix
-        if (pdb_.upper(), ) in overlap_PDBs:
+        if pdb_.upper() in overlap_PDBs:
             if pdb_.upper() in original_structures:
                 original_structures[pdb_].append(pdb)
             else:
                 original_structures[pdb_] = [pdb]
     
-print (original_structures)
+for key, val in original_structures.items():
+    print (key, BM2020_PATH + val)
