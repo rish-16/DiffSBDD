@@ -1,4 +1,5 @@
 import MDAnalysis as mda
+from MDAnalysis.coordinates.PDB import PDBWriter
 import os, subprocess
 
 PATH = "analysis_combined_pdbs/"
