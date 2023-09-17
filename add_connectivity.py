@@ -14,5 +14,5 @@ for pdb in os.listdir(PATH):
 
         print (pdb_path + "/" + pdb_file_name + "_bonds.pdb")
 
-        # with PDBWriter(f"{pdb_path + "/" + frame_file}_bonds.pdb", n_atoms=n_atoms, bonds='conect') as W:
-        #     W.write(frame_uni)
+        with PDBWriter(pdb_path + "/" + frame_file + "_bonds.pdb", n_atoms=n_atoms, bonds='conect') as W:
+            W.write(frame_uni)
