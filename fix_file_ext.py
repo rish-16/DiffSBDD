@@ -13,5 +13,11 @@ for file in os.listdir(PATH):
         new_fp = file[:-5]
         cmd = f"mv {fp} {PATH + new_fp}_2.pdb"
         subprocess.call(cmd, shell=True)
+    elif "bio" in file:
+        fp = PATH + file
+        new_fp = file[:-5]
+        cmd = f"mv {fp} {PATH + new_fp}_3.pdb"
+        subprocess.call(cmd, shell=True)
     else:
-        print (file)
+        if "_" not in file:
+            print (file)
