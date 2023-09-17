@@ -30,4 +30,4 @@ for key, val in original_structures.items():
     fp = BM2020_PATH + val[0][0]
     # cmd = f"cp {fp} og_crystal_structs/{val[0]}"
     # subprocess.call(cmd, shell=True)
-    print (f"{key.upper()}, {BM2020_PATH + val[0]}, {val[0][1]}")
+    print (f"{key.upper()}, {BM2020_PATH + val[0][0]}, {val[0][1]}")
