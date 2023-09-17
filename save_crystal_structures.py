@@ -12,21 +12,21 @@ with open(OVERLAP_PATH, "r") as f:
 converter = lambda s : re.findall(r'\d', s.split("_")[0])[0]
 
 overlap_PDBs = {
-    (rec[0].upper(), converter(rec[1])) : True
+    rec[0].upper() : True
     for rec in overlap_records
 }
 
 pprint (overlap_PDBs)
 print (len(overlap_PDBs))
 
-# original_structures = {}
-# for pdb in os.listdir(BM2020_PATH):
-#     if "_1" in pdb or "_2" in pdb or "_3" in pdb:
-#         pdb_ = pdb[:-6] # ignore the _x.pdb prefix
-#         if (pdb_.upper(), ) in overlap_PDBs:
-#             if pdb_.upper() in original_structures:
-#                 original_structures[pdb_].append(pdb)
-#             else:
-#                 original_structures[pdb_] = [pdb]
+original_structures = {}
+for pdb in os.listdir(BM2020_PATH):
+    if "_1" in pdb or "_2" in pdb or "_3" in pdb:
+        pdb_ = pdb[:-6] # ignore the _x.pdb prefix
+        if (pdb_.upper(), ) in overlap_PDBs:
+            if pdb_.upper() in original_structures:
+                original_structures[pdb_].append(pdb)
+            else:
+                original_structures[pdb_] = [pdb]
     
-# print (original_structures)
+print (original_structures)
