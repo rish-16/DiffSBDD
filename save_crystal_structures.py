@@ -27,4 +27,7 @@ for pdb in os.listdir(BM2020_PATH):
                 original_structures[pdb_] = [pdb]
     
 for key, val in original_structures.items():
-    print (f"{key.upper()}, {BM2020_PATH + val[0]}")
+    fp = BM2020_PATH + val[0]
+    cmd = f"cp {fp} og_crystal_structs/{val[0]}"
+    subprocess.call(cmd, shell=True)
+    # print (f"{key.upper()}, {BM2020_PATH + val[0]}")
