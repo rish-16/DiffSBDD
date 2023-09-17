@@ -9,7 +9,7 @@ with open(OVERLAP_PATH, "r") as f:
     overlap_records = f.read().strip().split("\n")[1:] # ignore header
     overlap_records = [rec.strip().split(",") for rec in overlap_records]
 
-converter = lambda s : re.findall("r'\d+'", s.split("_")[0])[0]
+converter = lambda s : re.findall(r'\d', s.split("_")[0])[0]
 
 overlap_PDBs = {
     (rec[0].upper(), converter(rec[1])) : True
