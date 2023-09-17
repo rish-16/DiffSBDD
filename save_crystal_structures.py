@@ -13,7 +13,7 @@ overlap_PDBs = {
     for rec in overlap_records
 }
 
-print (overlap_PDBs)
+print (len(overlap_PDBs))
 
 original_structures = {}
 for pdb in os.listdir(BM2020_PATH):
