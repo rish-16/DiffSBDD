@@ -26,8 +26,9 @@ for pdb in os.listdir(BM2020_PATH):
             else:
                 original_structures[pdb_] = [[pdb, overlap_PDBs[pdb_.upper()]]]
     
+print ("PDB,Path,PocketInfo")
 for key, val in original_structures.items():
     fp = BM2020_PATH + val[0][0]
     # cmd = f"cp {fp} og_crystal_structs/{val[0]}"
     # subprocess.call(cmd, shell=True)
-    print (f"{key.upper()}, {BM2020_PATH + val[0][0]}, {val[0][1]}")
+    print (f"{key.upper()},{BM2020_PATH + val[0][0]},{val[0][1]}")
