@@ -1,5 +1,5 @@
 from typing import Union, Iterable
-
+import os
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -71,19 +71,24 @@ def write_xyz_file(coords, atom_types, filename):
 
 
 def write_sdf_file(sdf_path, molecules):
-    # NOTE Changed to be compatitble with more versions of rdkit
-    with Chem.SDWriter(str(sdf_path)) as w:
-        w.SetKekulize(False)
-        for mol in molecules:
-            w.write(mol)
+    # NOTE: Changed to be compatitble with more versions of rdkit
 
-    # w = Chem.SDWriter(str(sdf_path))
-    # for m in molecules:
-        # if m is not None:
-            # w.write(m)
+    # with Chem.SDWriter(str(sdf_path)) as w:
+        # w.SetKekulize(False)
+        # for mol in molecules:
+            # w.write(mol)
 
-    # print(f'Wrote SDF file to {sdf_path}')
+    directory = "/".join(sdf_path.split("/")[:-1])
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
+    w = Chem.SDWriter(str(sdf_path))
+    w.SetKekulize(False)
+    for m in molecules:
+        if m is not None:
+            w.write(m)
+
+    print(f'Wrote SDF file to {sdf_path}')
 
 def residues_to_atoms(x_ca, atom_encoder):
     x = x_ca
