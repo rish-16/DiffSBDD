@@ -72,15 +72,15 @@ def write_xyz_file(coords, atom_types, filename):
 
 def write_sdf_file(sdf_path, molecules):
     # NOTE Changed to be compatitble with more versions of rdkit
-    #with Chem.SDWriter(str(sdf_path)) as w:
-    #    for mol in molecules:
-    #        w.write(mol)
+    with Chem.SDWriter(str(sdf_path)) as w:
+        w.SetKekulize(False)
+        for mol in molecules:
+            w.write(mol)
 
-    w = Chem.SDWriter(str(sdf_path))
-    w.SetKekulize(False)
-    for m in molecules:
-        if m is not None:
-            w.write(m)
+    # w = Chem.SDWriter(str(sdf_path))
+    # for m in molecules:
+        # if m is not None:
+            # w.write(m)
 
     # print(f'Wrote SDF file to {sdf_path}')
 
