@@ -78,7 +78,7 @@ def write_sdf_file(sdf_path, molecules):
         # for mol in molecules:
             # w.write(mol)
 
-    directory = "/".join(sdf_path.split("/")[:-1])
+    directory = "/".join(str(sdf_path).split("/")[:-1])
     if not os.path.exists(directory):
         os.makedirs(directory)
 
