@@ -11,4 +11,3 @@ misato/all_atoms_11GS.hdf5
 
 ckpt/*.ckpt
 analysis_combined_pdbs/**
-og_crystal_structs/**
