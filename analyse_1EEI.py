@@ -11,5 +11,4 @@ for fp in pdb_1EE1_dir:
         frame_idx = re.findall(r"\d+", fp)[-1]
         # 1EEI_MD_frame41.pdb_bonds.pdb
         new_fp = fp.split(".")[0] + "_bonds.pdb"
-        print (f"mv analysis_combined_pdbs/combined_1EEI/{fp} analysis_combined_pdbs/combined_1EEI/{new_fp}")
         print (f"python generate_ligands.py ckpt/moad_ca_cond.ckpt --pdbfile analysis_combined_pdbs/combined_1EEI/{new_fp} --outdir analysis_results/results_1EEI/frame_{frame_idx}_1EEI/ --ref_ligand X:517")
