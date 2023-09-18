@@ -47,5 +47,7 @@ if __name__ == "__main__":
         resamplings=args.resamplings, jump_length=args.jump_length,
         timesteps=args.timesteps)
 
+    print (molecules)
+
     # Make SDF files
     utils.write_sdf_file(Path(args.outdir, f'{pdb_id}_mol.sdf'), molecules)
